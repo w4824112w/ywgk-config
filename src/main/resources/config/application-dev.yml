@@ -1,0 +1,42 @@
+##########################################################
+###################  开发环境的profile  ###################
+##########################################################
+###################  项目启动端口  ###################
+server:
+  port: 8081
+  session:
+    timeout: 1800
+  
+spring:
+  profiles: dev
+  kafka:
+    producer:
+      retries: 0
+      batch-size: 16384
+      buffer-memory: 33554432
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      bootstrap-servers: 120.78.190.101:9092
+    consumer:
+      zookeeper-connect: zookeeper:2181
+      bootstrap-servers: 120.78.190.101:9092
+      group-id: foo
+      session-timeout: 6000
+      auto-offset-reset: earliest
+      enable-auto-commit: true
+      auto-commit-interval: 100
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer  
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://120.78.190.101:3306/prison_ywgk_test?autoReconnect=true&useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowMultiQueries=true
+    username: root
+    password: 3m4c3n9q8J
+
+logging:
+  level.root: info
+  level.com.gkyt.ywgk: debug
+  file: logs/logs.log
+
+host: http://120.78.190.101:8082/ywgk-app/
+#host: http://127.0.0.1:8082/
